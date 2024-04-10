@@ -1,5 +1,7 @@
 <?php
-
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\SongController;
+use App\Http\Controllers\PlaylistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// to show the genres :
+Route::get('/genres', [GenreController::class, 'index'])->name('genres.index');
+
+// to show the songs :
+Route::get('/songs', [SongController::class, 'index'])->name('songs.index');
+
+// to show the playlists :
+Route::get('/playlists', [PlaylistController::class, 'index'])->name('playlist.index');

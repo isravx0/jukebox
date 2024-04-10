@@ -9,7 +9,7 @@
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
-            background-color: #114232;
+            background-color: #5BBCFF;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -20,7 +20,7 @@
             margin-bottom: 20px;
         }
         h2 {
-            color: #FCDC2A;
+            color: #7EA1FF;
             margin-bottom: 5px;
         }
         h3 {
@@ -28,7 +28,7 @@
             margin-bottom: 10px;
         }
         section {
-            background-color: #99BC85;
+            background-color: #FFFAB7;
             border-radius: 8px;
             padding: 10px;
             margin-bottom: 20px;
@@ -47,7 +47,7 @@
 
 
         @foreach($genres as $genre)
-        <section> <h2> {{$genre->id}} > {{$genre->name}} </h2></section>
+        <section> <h2> {{$genre->id}}. {{$genre->name}} </h2></section>
         @endforeach
 
     </div>
