@@ -13,4 +13,12 @@ class Playlist extends Model
     protected $fillable = [
         'name',
     ];
+
+    /**
+     * Get the songs associated with the playlist.
+     */
+    public function songs()
+    {
+        return $this->belongsToMany(Song::class);
+    }
 }
