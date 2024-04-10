@@ -27,3 +27,6 @@ Route::get('/songs', [SongController::class, 'index'])->name('songs.index');
 
 // to show the playlists :
 Route::get('/playlists', [PlaylistController::class, 'index'])->name('playlist.index');
+
+// to handles the request to show songs belonging to a genre:
+Route::get('/genres/{genreId}', [GenreController::class, 'showSongs'])->name('genres.show');
