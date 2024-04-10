@@ -27,6 +27,10 @@
             color: #F7F6BB;
             margin-bottom: 10px;
         }
+        a {
+            color: #007bff; /* Link color */
+            text-decoration: none; /* Remove underline */
+        }
         section {
             background-color: #FFFAB7;
             border-radius: 8px;
@@ -52,6 +56,41 @@
         .create-playlist-link:hover {
             background-color: #0056b3;
         }
+        .success-message {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .delete-playlist-btn, .edit-playlist-btn, .add-song-btn{
+            margin-top: 10px;
+            background-color: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .delete-playlist-btn:hover {
+            background-color: #c82333;
+        }
+
+        .edit-playlist-btn {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .edit-playlist-btn:hover {
+            background-color: #e0a800;
+        }
+
+        .add-song-btn{
+            background-color: green;
+        }
     </style>
 </head>
 <body>
@@ -69,9 +108,20 @@
         <a class="create-playlist-link" href="{{ route('playlists.create') }}">Create New Playlist</a>
 
         @foreach($playlists as $playlist)
-        <section>
-            <h2>{{ $playlist->name }}</h2>
-        </section>
+            <section>
+                <a href="{{ route('playlists.show', $playlist) }}">
+                    <h2>{{ $playlist->name }}</h2>
+                </a>
+
+                <form action="{{ route('playlists.destroy', $playlist) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="delete-playlist-btn" type="submit" onclick="return confirm('Are you sure you want to delete this playlist?')">Delete</button>
+                    <a class="edit-playlist-btn" href="{{ route('playlists.edit', $playlist) }}">Edit</a>
+                    <a href="{{ route('playlists.add', $playlist) }}" class="add-song-btn">Add</a>
+                </form>
+
+            </section>
         @endforeach
 
     </div>

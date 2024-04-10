@@ -27,6 +27,10 @@
             color: #F7F6BB;
             margin-bottom: 10px;
         }
+        a {
+            text-decoration: none; /* Removes underline */
+            color: inherit; /* Inherits the color from its parent */
+        }
         section {
             background-color: #FFFAB7;
             border-radius: 8px;

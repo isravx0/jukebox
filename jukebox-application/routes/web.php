@@ -34,3 +34,14 @@ Route::get('/genres/{genreId}', [GenreController::class, 'showSongs'])->name('ge
 // to handle the creation of playlists :
 Route::get("/playlists/create" , array(PlaylistController::class, "create"))->name("playlists.create");
 Route::post("/playlists" , array(PlaylistController::class, "store"))->name("playlists.store");
+
+// to handle the changing of playlists :
+Route::get('/playlists/{playlist}/edit', array(PlaylistController::class, "edit"))->name('playlists.edit');
+Route::put('/playlists/{playlist}/update', array(PlaylistController::class, "update"))->name('playlists.update');
+Route::delete('/playlists/{playlist}/destroy', array(PlaylistController::class, "destroy"))->name('playlists.destroy');
+
+// to point to the controller method that will display the form and handle the submission.
+Route::post('/playlist/{playlist}/add', [PlaylistController::class, 'addSongs'])->name('playlists.addSongs');
+
+Route::get('/playlists/{playlist}/add', [PlaylistController::class, 'showAddSongsForm'])->name('playlists.add');
+Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('playlists.show');
