@@ -30,3 +30,7 @@ Route::get('/playlists', [PlaylistController::class, 'index'])->name('playlist.i
 
 // to handles the request to show songs belonging to a genre:
 Route::get('/genres/{genreId}', [GenreController::class, 'showSongs'])->name('genres.show');
+
+// to handle the creation of playlists :
+Route::get("/playlists/create" , array(PlaylistController::class, "create"))->name("playlists.create");
+Route::post("/playlists" , array(PlaylistController::class, "store"))->name("playlists.store");

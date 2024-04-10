@@ -39,11 +39,34 @@
         section:hover {
             transform: translateY(-5px);
         }
+        .create-playlist-link {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .create-playlist-link:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Playlists Overzicht</h1>
+
+        <!-- Success message after creating or updating or deleting a playlist -->
+        @if(session('success'))
+            <div class="success-message">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <!-- Link to create a new playlist -->
+        <a class="create-playlist-link" href="{{ route('playlists.create') }}">Create New Playlist</a>
 
         @foreach($playlists as $playlist)
         <section>
