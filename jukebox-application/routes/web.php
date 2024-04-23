@@ -45,3 +45,6 @@ Route::post('/playlist/{playlist}/add', [PlaylistController::class, 'addSongs'])
 
 Route::get('/playlists/{playlist}/add', [PlaylistController::class, 'showAddSongsForm'])->name('playlists.add');
 Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('playlists.show');
+
+//  to handle the deletion of songs from the playlist:
+Route::delete('/playlists/{playlist}/songs/{song}',[PlaylistController::class, 'deleteSong'])->name('playlist.song.delete');

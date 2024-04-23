@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $genre->name }} Songs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .container {
             max-width: 800px;
@@ -46,6 +47,10 @@
     <div class="container">
 
         <h1>{{ $genre->name }} Songs</h1>
+
+        <a href="{{ route('genres.index', $genre) }}">
+            <i class="fa fa-chevron-circle-left" style="margin-bottom: 10px; font-size:36px; color: white;"></i>
+        </a>
 
         @foreach($songs as $song)
             <section>

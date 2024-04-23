@@ -113,4 +113,19 @@ class PlaylistController extends Controller
 
         return view('playlist.show', compact('playlist'));
     }
+    public function deleteSong($playlistId, $songId)
+{
+    // Find the playlist by ID
+    $playlist = Playlist::findOrFail($playlistId);
+
+    // Find the song by ID
+    $song = Song::findOrFail($songId);
+
+    // Detach the song from the playlist
+    $playlist->songs()->detach($song);
+
+    // Redirect back to the playlist show page with a success message
+    return redirect()->route('playlists.show', $playlist)->with('success', 'Song deleted from the playlist successfully.');
 }
+}
+

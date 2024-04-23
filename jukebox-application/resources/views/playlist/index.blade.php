@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Playlists Overzicht</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333; /* Text color */
+        }
         .container {
             max-width: 800px;
             margin: 20px auto;
@@ -75,6 +82,15 @@
             margin-left: 10px;
         }
 
+        .back-button{
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
         .delete-playlist-btn:hover {
             background-color: #c82333;
         }
@@ -106,6 +122,8 @@
 
         <!-- Link to create a new playlist -->
         <a class="create-playlist-link" href="{{ route('playlists.create') }}">Create New Playlist</a>
+
+        <a href="{{ route('playlist.index') }}" class="back-button" >Back</a>
 
         @foreach($playlists as $playlist)
             <section>

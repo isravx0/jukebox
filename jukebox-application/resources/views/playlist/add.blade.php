@@ -44,7 +44,6 @@
         }
         .back-btn {
             background-color: #5755FE;
-
         }
         label {
             color: white;
@@ -81,14 +80,14 @@
                 <label for="songs">Select Songs:</label>
                 <select name="songs[]" id="songs" multiple required>
                     @foreach ($songs as $song)
-                        <option value="{{ $song->id }}">- {{ $song->name }}</option>
+                        @if(!$playlist->songs->contains($song))
+                            <option value="{{ $song->id }}">- {{ $song->name }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
             <button type="submit">Add Songs</button>
             <a href="{{ route('playlist.index') }}" class="back-btn">Back</a>
-
-
         </form>
     </div>
 </body>

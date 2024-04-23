@@ -57,6 +57,15 @@
         .delete-button{
             background-color: red;
         }
+        .back-button{
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
         .error-message {
             color: white;
             background-color: red;
@@ -108,6 +117,8 @@
             @method('DELETE')
             <button class="delete-button" type="submit" onclick="return confirm('Are you sure you want to delete this playlist?')">Delete Playlist</button>
         </form>
+
+        <a class="back-button" href="{{ route('playlist.index') }}">Back to Playlists</a>
 
     </div>
 </body>
