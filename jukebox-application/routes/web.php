@@ -2,6 +2,8 @@
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\PlaylistController;
+use App\Http\Controllers\HomePageController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/homepage', [HomePageController::class, 'index'])->name('home.index');
 
 // to show the genres :
 Route::get('/genres', [GenreController::class, 'index'])->name('genres.index');
