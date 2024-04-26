@@ -3,6 +3,8 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -52,3 +54,15 @@ Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('
 
 //  to handle the deletion of songs from the playlist:
 Route::delete('/playlists/{playlist}/songs/{song}',[PlaylistController::class, 'deleteSong'])->name('playlist.song.delete');
+
+// Authentication Routes
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/login', [HomePageController::class, 'index'])->middleware('auth');
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);

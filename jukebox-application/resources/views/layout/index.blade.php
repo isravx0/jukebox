@@ -90,6 +90,19 @@
                 <a href="{{ route('playlist.index') }}">Playlists</a>
                 <a href="{{ route('songs.index') }}">Songs</a>
             </div>
+
+            <div>
+                @guest <!-- Check if user is a guest (not logged in) -->
+                    <button class="login-btn" onclick="window.location='{{ route('login') }}'">Login</button>
+                    <button class="signup-btn" onclick="window.location='{{ route('register') }}'">Sign Up</button>
+                @else <!-- User is logged in -->
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="logout-btn">Logout</button>
+                    </form>
+                @endguest
+            </div>
+
         </div>
 
         <h1>Welcome to Your Music App!</h1>
