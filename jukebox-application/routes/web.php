@@ -30,6 +30,8 @@ Route::get('/genres', [GenreController::class, 'index'])->name('genres.index');
 
 // to show the songs :
 Route::get('/songs', [SongController::class, 'index'])->name('songs.index');
+Route::get('/songs/{id}', [SongController::class, 'show'])->name('songs.show');; //To show song details
+
 
 // to show the playlists :
 Route::get('/playlists', [PlaylistController::class, 'index'])->name('playlist.index');

@@ -13,4 +13,11 @@ class SongController extends Controller
         $songs = Song::all();
         return view('song.index', ['songs' => $songs]);
     }
+
+    public function show($id)
+    {
+        $song = Song::findOrFail($id);
+        return view('song.show', ['song' => $song]);
+    }
+
 }

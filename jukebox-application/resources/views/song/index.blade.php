@@ -32,10 +32,15 @@
             margin-bottom: 20px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+            cursor: pointer; /* Toegevoegd om aan te geven dat het klikbaar is */
         }
 
         section:hover {
             transform: translateY(-5px);
+        }
+        a {
+            text-decoration: none; /* Removes underline */
+            color: inherit; /* Inherits the color from its parent */
         }
     </style>
 </head>
@@ -43,21 +48,14 @@
     <div class="container">
         <h1 style="text-align: center;">Songs Overzicht</h1>
 
-        @foreach($songs as $song) <!-- Starts a foreach block -->
+        @foreach($songs as $song)
         <section>
-            <h2>{{ $song->name }}</h2> <!-- $key => $val -->
+            <h2> <a href="{{ route('songs.show', $song) }}">{{ $song->name }}</a> </h2>
             <h3>{{ $song->author }}</h3>
-
-            @php
-                $minutes = floor($song->duration / 60); // Bereken het aantal volledige minuten
-                $seconds = $song->duration % 60; // Bereken het aantal overgebleven seconden
-            @endphp
-            <p>Duur: {{ $minutes }}:{{ sprintf("%02d", $seconds) }}</p>
-
-            <p>Jaar van release: {{ $song->releaseyear }}</p>
-            <p>Beschrijving: {{ $song->description }}</p>
+            <p>
+            </p>
         </section>
-        @endforeach <!-- Ends a foreach block -->
+        @endforeach
 
     </div>
 </body>
