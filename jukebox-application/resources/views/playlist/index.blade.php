@@ -123,7 +123,7 @@
         <!-- Link to create a new playlist -->
         <a class="create-playlist-link" href="{{ route('playlists.create') }}">Create New Playlist</a>
 
-        <a href="{{ route('playlist.index') }}" class="back-button" >Back</a>
+        <a href="{{ route('home.index') }}" class="back-button" >Back</a>
 
         @foreach($playlists as $playlist)
             <section>
@@ -136,7 +136,7 @@
                     @method('DELETE')
                     <button class="delete-playlist-btn" type="submit" onclick="return confirm('Are you sure you want to delete this playlist?')">Delete</button>
                     <a class="edit-playlist-btn" href="{{ route('playlists.edit', $playlist) }}">Edit</a>
-                    <a href="{{ route('playlists.add', $playlist) }}" class="add-song-btn">Add</a>
+                    <a href="{{ route('playlists.addSongs', $playlist) }}" class="add-song-btn">Add</a>
                 </form>
 
             </section>

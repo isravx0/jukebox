@@ -51,7 +51,6 @@ Route::delete('/playlists/{playlist}/destroy', array(PlaylistController::class, 
 // to point to the controller method that will display the form and handle the submission.
 Route::post('/playlist/{playlist}/add', [PlaylistController::class, 'addSongs'])->name('playlists.addSongs');
 
-Route::get('/playlists/{playlist}/add', [PlaylistController::class, 'showAddSongsForm'])->name('playlists.add');
 Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('playlists.show');
 
 //  to handle the deletion of songs from the playlist:

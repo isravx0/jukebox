@@ -67,8 +67,11 @@ class PlaylistController extends Controller
     }
 
     // To add  songs to a playlist
-    public function addSongsToPlaylist(Request $request, Playlist $playlist)
+
+
+    public function addSongs(Request $request, Playlist $playlist)
     {
+        // Validate the request data
         $request->validate([
             'songs' => 'required|array',
             'songs.*' => [
@@ -85,25 +88,8 @@ class PlaylistController extends Controller
         // Attach only the new songs to the playlist
         $playlist->songs()->attach($songsToAdd);
 
-        return redirect()->route('playlist.show', $playlist)->with('success', 'Songs added to playlist successfully.');
-    }
-
-
-
-
-    public function addSongs(Request $request, Playlist $playlist)
-    {
-        // Validate the request data
-        $request->validate([
-            'songs' => 'required|array',
-            'songs.*' => 'exists:songs,id',
-        ]);
-
-        // Attach the selected songs to the playlist
-        $playlist->songs()->attach($request->input('songs'));
-
         // Redirect back with a success message
-        return redirect()->route('playlist.index')->with('success', 'Songs added to playlist successfully.');
+        return redirect()->route('playlist.index', $playlist)->with('success', 'Songs added to playlist successfully.');
     }
 
     public function show(Playlist $playlist)
