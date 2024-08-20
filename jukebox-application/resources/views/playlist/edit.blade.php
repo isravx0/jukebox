@@ -4,94 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Playlist</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            background-color: #5BBCFF;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            text-align: center;
-            color: white;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        label {
-            font-size: 16px;
-            margin-bottom: 8px;
-            color: white;
-        }
-        input[type="text"] {
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid black;
-            border-radius: 4px;
-            background-color: white;
-        }
-        .delete-button , .update-button {
-            padding: 10px 20px;
-            background-color: green;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-bottom: 10px;
-        }
-        button[type="submit"]:hover, button[type="button"]:hover {
-            background-color: #0056b3;
-        }
-        .delete-button{
-            background-color: red;
-        }
-        .back-button{
-            display: inline-block;
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-        .error-message {
-            color: white;
-            background-color: red;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-
-        .error-message ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .error-message li {
-            margin-bottom: 5px;
-        }
-    </style>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Edit Playlist</h1>
+    <div class="container mt-5">
+        <h1 class="text-center text-white">Edit Playlist</h1>
 
         <!-- Error messages -->
         @if ($errors->any())
-            <div class="error-message">
+            <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -104,22 +26,21 @@
         <form action="{{ route('playlists.update', $playlist) }}" method="POST">
             @csrf
             @method('PUT')
-            <div>
-                <label for="name">Playlist Name:</label>
-                <input type="text" id="name" name="name" value="{{ $playlist->name }}" required>
+            <div class="form-group">
+                <label for="name" class="text-white">Playlist Name:</label>
+                <input type="text" id="name" name="name" class="form-control" value="{{ $playlist->name }}" required>
             </div>
-            <button class="update-button" type="submit">Update Playlist</button>
+            <button class="btn btn-primary" type="submit">Update Playlist</button>
         </form>
 
         <!-- Button to delete the playlist -->
         <form action="{{ route('playlists.destroy', $playlist) }}" method="POST">
             @csrf
             @method('DELETE')
-            <button class="delete-button" type="submit" onclick="return confirm('Are you sure you want to delete this playlist?')">Delete Playlist</button>
+            <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete this playlist?')">Delete Playlist</button>
         </form>
 
-        <a class="back-button" href="{{ route('playlist.index') }}">Back to Playlists</a>
-
+        <a class="btn btn-secondary mt-3" href="{{ route('playlist.index') }}">Back to Playlists</a>
     </div>
 </body>
 </html>

@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
         .container {
-            max-width: 800px;
+            max-width: 500px;
             margin: 20px auto;
             padding: 20px;
             background-color: #5BBCFF;
@@ -21,45 +17,16 @@
         }
         h1 {
             font-size: 24px;
-            margin: 30px;
             color: white;
             text-align: center;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        label {
-            font-size: 16px;
-            margin-bottom: 8px;
-            color: white;
-        }
-        input[type="email"],
-        input[type="password"] {
-            padding: 10px;
             margin-bottom: 20px;
-            border: 1px solid black;
-            border-radius: 4px;
-            background-color: white;
-        }
-        button[type="submit"] {
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        button[type="submit"]:hover {
-            background-color: #218838;
         }
         .error-message {
             color: white;
             background-color: red;
             padding: 10px;
-            margin-bottom: 20px;
             border-radius: 5px;
+            margin-bottom: 20px;
         }
         .error-message ul {
             list-style-type: none;
@@ -69,7 +36,7 @@
         .error-message li {
             margin-bottom: 5px;
         }
-        .back-button{
+        .back-button {
             display: inline-block;
             background-color: #007bff;
             color: #fff;
@@ -78,6 +45,12 @@
             text-align: center;
             border-radius: 5px;
             margin-top: 20px;
+            display: block;
+            text-align: center;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+            color: #fff;
         }
     </style>
 </head>
@@ -98,17 +71,22 @@
 
         <form action="{{ route('login') }}" method="POST">
             @csrf
-            <div>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+            <div class="form-group">
+                <label for="email" class="text-white">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" required>
             </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+            <div class="form-group">
+                <label for="password" class="text-white">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required>
             </div>
-            <button type="submit">Login</button>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
             <a href="{{ route('home.index') }}" class="back-button">Back</a>
         </form>
     </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

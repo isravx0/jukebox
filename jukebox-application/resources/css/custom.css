@@ -1,0 +1,25 @@
+.section-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ccc;
+}
+
+.list-group-item {
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+
+.list-group-item-info:hover {
+    background-color: #d1ecf1;
+}
+
+.list-group-item-success:hover {
+    background-color: #c3e6cb;
+}
+
+.list-group-item-warning:hover {
+    background-color: #ffeeba;
+}

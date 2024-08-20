@@ -27,17 +27,19 @@ Route::get('/homepage', [HomePageController::class, 'index'])->name('home.index'
 
 // to show the genres :
 Route::get('/genres', [GenreController::class, 'index'])->name('genres.index');
+// to handles the request to show songs belonging to a genre:
+Route::get('/genres/{genreId}', [GenreController::class, 'showSongs'])->name('genres.show');
+
 
 // to show the songs :
 Route::get('/songs', [SongController::class, 'index'])->name('songs.index');
-Route::get('/songs/{id}', [SongController::class, 'show'])->name('songs.show');; //To show song details
+//To show song details
+Route::get('/songs/{id}', [SongController::class, 'show'])->name('songs.show');
+
 
 
 // to show the playlists :
 Route::get('/playlists', [PlaylistController::class, 'index'])->name('playlist.index');
-
-// to handles the request to show songs belonging to a genre:
-Route::get('/genres/{genreId}', [GenreController::class, 'showSongs'])->name('genres.show');
 
 // to handle the creation of playlists :
 Route::get("/playlists/create" , array(PlaylistController::class, "create"))->name("playlists.create");
@@ -49,7 +51,7 @@ Route::put('/playlists/{playlist}/update', array(PlaylistController::class, "upd
 Route::delete('/playlists/{playlist}/destroy', array(PlaylistController::class, "destroy"))->name('playlists.destroy');
 
 // to point to the controller method that will display the form and handle the submission.
-Route::post('/playlist/{playlist}/add', [PlaylistController::class, 'addSongs'])->name('playlists.addSongs');
+Route::post('/playlist/{playlist}/add', [PlaylistController::class, 'add'])->name('playlists.add');
 
 Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('playlists.show');
 

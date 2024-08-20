@@ -69,7 +69,7 @@ class PlaylistController extends Controller
     // To add  songs to a playlist
 
 
-    public function addSongs(Request $request, Playlist $playlist)
+    public function add(Request $request, Playlist $playlist)
     {
         // Validate the request data
         $request->validate([
@@ -114,4 +114,3 @@ class PlaylistController extends Controller
     return redirect()->route('playlists.show', $playlist)->with('success', 'Song deleted from the playlist successfully.');
 }
 }
-

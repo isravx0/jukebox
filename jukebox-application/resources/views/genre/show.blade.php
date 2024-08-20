@@ -1,64 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $genre->name }} Songs</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #5BBCFF;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+@extends('layout.app')
 
-        h1, p{
-            color: white;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        h2 {
-            color: #7EA1FF;
-            margin-bottom: 5px;
-        }
-        h3 {
-            color: #F7F6BB;
-            margin-bottom: 10px;
-        }
-        section {
-            background-color: #FFFAB7;
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
+@section('title', $genre->name . ' Songs')
 
-        section:hover {
-            transform: translateY(-5px);
-        }
-    </style>
-</head>
-<body>
+@section('content')
+    <div class="container mt-5">
+        <!-- Genre Title -->
+        <h1 class="text-center mb-4">{{ $genre->name }} Songs</h1>
 
-    <div class="container">
+        <!-- Back Button -->
+        <div class="mb-3">
+            <a href="{{ route('genres.index', $genre) }}" class="btn btn-secondary">
+                <i class="fa fa-chevron-circle-left mr-2"></i>Back to Genres
+            </a>
+        </div>
 
-        <h1>{{ $genre->name }} Songs</h1>
-
-        <a href="{{ route('genres.index', $genre) }}">
-            <i class="fa fa-chevron-circle-left" style="margin-bottom: 10px; font-size:36px; color: white;"></i>
-        </a>
-
+        <!-- List of Songs -->
         @foreach($songs as $song)
-            <section>
-                {{ $song->name }} - {{ $song->author }}
-            </section>
+            <div class="card mb-3 list-group-item-info">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $song->name }}</h5>
+                    <p class="card-text">Artist: {{ $song->author }}</p>
+                </div>
+            </div>
         @endforeach
 
-
+        <!-- No songs message -->
+        @if($songs->isEmpty())
+            <p class="text-center">No songs found in this genre.</p>
+        @endif
     </div>
-</body>
-</html>
+@endsection

@@ -1,60 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $song->name }} - Gedetailleerde weergave</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            color: grey;
-            padding: 20px;
-            background-color: #FFFAB7;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #5BBCFF;
-            margin-bottom: 10px;
-        }
-        p {
-            margin-bottom: 8px;
-        }
-        strong {
-            font-weight: bold;
-            color: black;
-        }
-        .back-button{
-            display: inline-block;
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>{{ $song->name }}</h1>
-        <p><strong>Auteur:</strong> {{ $song->author }}</p>
-        @php
-            $minutes = floor($song->duration / 60); // Bereken het aantal volledige minuten
-            $seconds = $song->duration % 60; // Bereken het aantal overgebleven seconden
-        @endphp
-        <p><strong>Duur:</strong> {{ $minutes }}:{{ sprintf("%02d", $seconds) }}</p>
-        <p><strong>Jaar van release:</strong> {{ $song->releaseyear }}</p>
-        <p><strong>Beschrijving:</strong> {{ $song->description }}</p>
-        <a href="{{ route('songs.index') }}" class="back-button">Back</a>
+@extends('layout.app')
 
+@section('title', 'Overview')
+
+@section('content')
+    <div class="container">
+        <!-- Personalized Greeting -->
+        <h1 class="text-center my-4">
+            Welcome to Your Music App{{ Auth::check() ? ', ' . Auth::user()->name : '' }}!
+        </h1>
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <!-- Genres Overview -->
+        <div class="section mb-5">
+            <h2 class="section-title text-primary">All Genres</h2>
+            <div class="list-group">
+                @foreach ($genres as $genre)
+                    <a href="{{ route('genres.show', $genre) }}" class="list-group-item list-group-item-action list-group-item-info">
+                        {{ $genre->name }}
+                    </a>
+                @endforeach
+            </div>
+        </div>
+
+        <!-- Songs Overview -->
+        <div class="section mb-5">
+            <h2 class="section-title text-success">Latest Songs</h2>
+            <div class="list-group">
+                @foreach ($songs as $song)
+                    <div class="list-group-item list-group-item-success">
+                        <h5 class="mb-1">{{ $song->name }}</h5>
+                        <p class="mb-1">Artist: {{ $song->author }}</p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
+        <!-- Playlists Overview -->
+        <div class="section mb-5">
+            <h2 class="section-title text-warning">Latest Playlists</h2>
+            <div class="list-group">
+                @foreach ($playlists as $playlist)
+                    <a href="{{ route('playlists.show', $playlist) }}" class="list-group-item list-group-item-action list-group-item-warning">
+                        <h5 class="mb-1">{{ $playlist->name }}</h5>
+                        <p class="mb-1">Number of Songs: {{ $playlist->songs()->count() }}</p>
+                    </a>
+                @endforeach
+            </div>
+        </div>
     </div>
-</body>
-</html>
+@endsection

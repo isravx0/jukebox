@@ -11,7 +11,7 @@ class HomePageController extends Controller
     public function index()
     {
         // Fetch the last two genres from the database
-        $genres = Genre::latest()->limit(2)->get();
+        $genres = Genre::all();
 
         // Fetch the last two playlists from the database
         $playlists = Playlist::latest()->limit(2)->get();
